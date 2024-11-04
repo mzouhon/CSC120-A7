@@ -124,13 +124,7 @@ throw new RuntimeException(this.name + " does not have an elevator. Please navig
 }
 }
   public static void main(String[] args) {
-    House myHouse=new House("Tyler", "IDK",4,true, false);
-    myHouse.showOptions();;
-    myHouse.enter();
-    House herHouse= new House("IDK");
-    herHouse.enter();
-    System.out.println(herHouse);
-    System.out.println(myHouse);
+    
   }
 
 }

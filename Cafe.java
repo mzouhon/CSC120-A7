@@ -129,10 +129,7 @@ public class Cafe extends Building {
     }
     public static void main(String[] args) {
 
-      Cafe myCafe= new Cafe("Moya's Cafe", "IDK", 02, 100, 20, 020, 20);
-      myCafe.showOptions();
-      myCafe.enter();
-      myCafe.sellCoffee(true,true);
+    
   
     }
     

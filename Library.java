@@ -24,7 +24,7 @@ public class Library extends Building {
   }
 
   public Library(String name, String address, int nFloors){
-    this(name, address, nFloors, true);
+    this(name, address, nFloors, false);
   }
 
 
@@ -157,17 +157,6 @@ public class Library extends Building {
     }
   }
   public static void main(String[] args) {
-    Library neilson= new Library("Neilson","IDK", 5, false);
-    neilson.showOptions();
-    neilson.enter();
-    neilson.addTitle("a");
-    neilson.addTitle("b");
-    neilson.addTitle("c");
-    neilson.addTitle("d");
-    neilson.addTitle("e");
-    neilson.checkOut("a");
-
-    neilson.printCollection(true);
     
   }
 
