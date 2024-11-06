@@ -23,18 +23,30 @@ public class House extends Building {
     super(name, address, nFloors);
     residents = new ArrayList < String > ();
     hasDiningRoom = hasDR;
-    hasElevator=hasELVTR;
+    hasElevator = hasELVTR;
 
     System.out.println("You have built a house: 🏠");
   }
 
-  public House(String name, String address, int nFloors){
-    this(name,address,nFloors, false,false);
+  /**
+   * constructs a house with a name, address, and number of floors, and default valuse of hasDiningRoom and hasElevator to false
+   * 
+   * @param name name of house
+   * @param address address of house
+   * @param nFloors number of floors of house
+   */
+  public House(String name, String address, int nFloors) {
+    this(name, address, nFloors, false, false);
   }
 
-  public House(String address){
+  /**
+   * constructs a house with default values except for the address 
+   * 
+   * @param address address of house
+   */
+  public House(String address) {
     super();
-    this.address=address;
+    this.address = address;
   }
 
   /**
@@ -46,7 +58,7 @@ public class House extends Building {
     return hasDiningRoom;
   }
 
-  public boolean hasElevator(){
+  public boolean hasElevator() {
     return hasElevator;
   }
 
@@ -103,28 +115,36 @@ public class House extends Building {
     return this.residents.contains(person);
   }
 
+  /**
+   * shows options of actions a user can take when navigating campus
+   */
   public void showOptions() {
     super.showOptions();
     System.out.println(" + hasDiningRoom()\n + nResidents()\n + moveIn(n)\n + moveOut(n)\n + isResident(n)");
-}
+  }
 
-public void goToFloor(int floorNum){
-  if(this.hasElevator()==true){
-    super.goToFloor(floorNum);
-  }else{
+  /**
+   * allows for a user to automatically change floor of the house they are on if the house has an elevator
+   * 
+   * @throws RuntimeException if user is not in the house, trying to move to an invalid floor, or not in a house with an elevator
+   */
+  public void goToFloor(int floorNum) {
+    if (this.hasElevator() == true) {
+      super.goToFloor(floorNum);
+    } else {
 
-  if (this.activeFloor == -1) {
-    throw new RuntimeException("You are not inside this Building. Must call enter() before navigating between floors.");
-}
-if (floorNum < 1 || floorNum > this.nFloors) {
-    throw new RuntimeException("Invalid floor number. Valid range for this Building is 1-" + this.nFloors +".");
-}
-throw new RuntimeException(this.name + " does not have an elevator. Please navigate using the goUp() and goDown() methods.");
+      if (this.activeFloor == -1) {
+        throw new RuntimeException("You are not inside this Building. Must call enter() before navigating between floors.");
+      }
+      if (floorNum < 1 || floorNum > this.nFloors) {
+        throw new RuntimeException("Invalid floor number. Valid range for this Building is 1-" + this.nFloors + ".");
+      }
+      throw new RuntimeException(this.name + " does not have an elevator. Please navigate using the goUp() and goDown() methods.");
 
-}
-}
+    }
+  }
   public static void main(String[] args) {
-    
+
   }
 
 }

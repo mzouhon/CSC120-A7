@@ -19,16 +19,26 @@ public class Library extends Building {
   public Library(String name, String address, int nFloors, boolean hasELVTR) {
     super(name, address, nFloors);
     collection = new Hashtable < String, Boolean > ();
-    hasElevator=hasELVTR;
+    hasElevator = hasELVTR;
     System.out.println("You have built a library: 📖");
   }
 
-  public Library(String name, String address, int nFloors){
+  /**
+   * constructs a new library with a name, address, and number of floors, sets hasElevator to default false
+   * 
+   * @param name
+   * @param address
+   * @param nFloors
+   */
+  public Library(String name, String address, int nFloors) {
     this(name, address, nFloors, false);
   }
 
-
-  public boolean hasElevator(){
+  /**
+   * returns whether library has an elevator
+   * 
+   */
+  public boolean hasElevator() {
     return hasElevator;
   }
 
@@ -125,39 +135,50 @@ public class Library extends Building {
     }
   }
 
-  public void printCollection(boolean availability){
+  /**
+   * prints the library's collection of books of the specified availability
+   * 
+   * @param availability availability of books
+   */
+  public void printCollection(boolean availability) {
     for (String title: collection.keySet()) {
-      if(collection.get(title)==availability){
-      System.out.println(title + " : " + collection.get(title));
+      if (collection.get(title) == availability) {
+        System.out.println(title + " : " + collection.get(title));
       }
     }
   }
 
-
+  /**
+   * shows options of actions a user can take when navigating campus
+   */
   public void showOptions() {
     super.showOptions();
     System.out.println(" + addTitle(t)\n + removeTitle(t)\n + checkOut(t)\n + returnBook(t)\n + containsTitle(t)\n + isAvailable(t)\n + printCollection()");
 
-
   }
 
-  public void goToFloor(int floorNum){
-    if(this.hasElevator()==true){
+  /**
+   * allows for a user to automatically change floor of library they are on if the library has an elevator
+   * 
+   * @throws RuntimeException if user is not in the house, trying to move to an invalid floor, or not in a house with an elevator
+   */
+  public void goToFloor(int floorNum) {
+    if (this.hasElevator() == true) {
       super.goToFloor(floorNum);
-    }else{
-  
-    if (this.activeFloor == -1) {
-      throw new RuntimeException("You are not inside this Building. Must call enter() before navigating between floors.");
-  }
-  if (floorNum < 1 || floorNum > this.nFloors) {
-      throw new RuntimeException("Invalid floor number. Valid range for this Building is 1-" + this.nFloors +".");
-  }
-  throw new RuntimeException(this.name + " does not have an elevator. Please navigate using the goUp() and goDown() methods.");
+    } else {
+
+      if (this.activeFloor == -1) {
+        throw new RuntimeException("You are not inside this Building. Must call enter() before navigating between floors.");
+      }
+      if (floorNum < 1 || floorNum > this.nFloors) {
+        throw new RuntimeException("Invalid floor number. Valid range for this Building is 1-" + this.nFloors + ".");
+      }
+      throw new RuntimeException(this.name + " does not have an elevator. Please navigate using the goUp() and goDown() methods.");
 
     }
   }
   public static void main(String[] args) {
-    
+
   }
 
 }
